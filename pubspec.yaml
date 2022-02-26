@@ -37,6 +37,12 @@ dependencies:
   flutter_login: ^3.1.0
   get: ^4.6.1
   lottie: ^1.2.2
+  firebase_core: ^1.13.0
+  firebase_auth: ^3.3.8
+  cloud_firestore: ^3.1.9
+  fluttertoast: ^8.0.8
+  logger: ^1.1.0
+  # firebase_analytics: ^9.1.1
 
 dev_dependencies:
   flutter_test:
