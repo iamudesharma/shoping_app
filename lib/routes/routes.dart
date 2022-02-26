@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:shoping_app/bindings/login_bindings.dart';
+import 'package:shoping_app/bindings/auth_bindings.dart';
+import 'package:shoping_app/pages/home_page.dart';
 import 'package:shoping_app/pages/login_page.dart';
 
 abstract class Routes {
@@ -12,10 +13,14 @@ class AppRoutes {
   static final pages = [
     GetPage(
       name: Routes.LOGIN,
-      page: () => LoginPage(),
+      page: () => const LoginPage(),
       bindings: [
-        LoginBinding(),
+        AuthBinding(),
       ],
+    ),
+    GetPage(
+      name: Routes.HOME,
+      page: () => const HomePage(),
     )
   ];
 }
