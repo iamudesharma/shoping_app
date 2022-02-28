@@ -13,7 +13,6 @@ class LoadingPage extends StatelessWidget {
           frameRate: FrameRate(
             60.0,
           ),
-
         ),
       ),
     );

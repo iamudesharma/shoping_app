@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:shoping_app/repository/auth_repository.dart';
@@ -6,11 +7,14 @@ import 'package:shoping_app/widgets/toast.dart';
 
 class AuthController extends GetxController with AuthRepository {
   FirebaseAuth firebaseAuth;
+
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   AuthController({
     required this.firebaseAuth,
   });
 
   final _logger = Get.find<LoggerController>();
+
 
   forgotPassword(String email) async {
     try {
@@ -51,6 +55,8 @@ class AuthController extends GetxController with AuthRepository {
 
   @override
   Future<User?> signInWithGoogle() {
+  CollectionReference userStoreRef = firestore.collection('');
+
     // TODO: implement signInWithGoogle
     throw UnimplementedError();
   }
