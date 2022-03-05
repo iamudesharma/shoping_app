@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:logging/logging.dart';
 import 'package:shoping_app/repository/auth_repository.dart';
-import 'package:shoping_app/widgets/logger.dart';
 import 'package:shoping_app/widgets/toast.dart';
 
 class AuthController extends GetxController with AuthRepository {
@@ -13,23 +13,21 @@ class AuthController extends GetxController with AuthRepository {
     required this.firebaseAuth,
   });
 
-  final _logger = Get.find<LoggerController>();
-
+  final logger = Logger('AuthController');
 
   forgotPassword(String email) async {
     try {
       await firebaseAuth.sendPasswordResetEmail(email: email);
       Toasts.showToastSucces("Email sent");
-      _logger.logger.i("Email sent");
+      logger.info("Email sent");
     } catch (e) {
       Toasts.showToastError('SomeingWentWrong');
-      _logger.logger.e("Email sent error: ${e.toString()}");
+      logger.severe("Email sent error: ${e.toString()}");
     }
   }
 
   @override
   Future<bool> isSignedIn() {
-    // TODO: implement isSignedIn
     throw UnimplementedError();
   }
 
@@ -42,11 +40,11 @@ class AuthController extends GetxController with AuthRepository {
       User user = result.user!;
 
       Toasts.showToastSucces("Login Succes: ${user.email}");
-      _logger.logger.i("Login Succes: ${user.email}");
+      logger.info("Login Succes: ${user.email}");
       return user;
     } catch (e) {
       Toasts.showToastError('SomeingWentWrong');
-      _logger.logger.e("User login error: ${e.toString()}");
+      logger.severe("User login error: ${e.toString()}");
 
       print(e.toString());
       return null;
@@ -55,9 +53,8 @@ class AuthController extends GetxController with AuthRepository {
 
   @override
   Future<User?> signInWithGoogle() {
-  CollectionReference userStoreRef = firestore.collection('');
+    CollectionReference userStoreRef = firestore.collection('');
 
-    // TODO: implement signInWithGoogle
     throw UnimplementedError();
   }
 
@@ -66,10 +63,10 @@ class AuthController extends GetxController with AuthRepository {
     try {
       await firebaseAuth.signOut();
       Toasts.showToastSucces("Logout Succes");
-      _logger.logger.i("Logout Succes");
+      logger.info("Logout Succes");
     } catch (e) {
       Toasts.showToastError('SomeingWentWrong');
-      _logger.logger.e("Logout error: ${e.toString()}");
+      logger.severe("Logout error: ${e.toString()}");
     }
   }
 
@@ -82,11 +79,11 @@ class AuthController extends GetxController with AuthRepository {
       User user = result.user!;
 
       Toasts.showToastSucces("User created: ${user.email}");
-      _logger.logger.i("User created: ${user.email}");
+      logger.info("User created: ${user.email}");
 
       return user;
     } catch (e) {
-      _logger.logger.e("User Create error: ${e.toString()}");
+      logger.severe("User Create error: ${e.toString()}");
 
       Toasts.showToastError('SomeingWentWrong');
 

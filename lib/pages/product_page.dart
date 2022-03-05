@@ -1,10 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:shoping_app/model/product_model.dart';
-import 'package:shoping_app/model/user_model.dart';
 import 'package:shoping_app/pages/no_internet_page.dart';
 
 class ProductPage extends StatelessWidget {
@@ -84,11 +80,11 @@ class ProductPage extends StatelessWidget {
     );
   }
 
-  productAddToCart(CartModel cartModel, String id) async {
-    await FirebaseFirestore.instance.collection('users').doc(id).update({
-      "cart": FieldValue.arrayUnion([cartModel.toMap()])
-    });
-  }
+  // productAddToCart(CartModel cartModel, String id) async {
+  //   await FirebaseFirestore.instance.collection('users').doc(id).update({
+  //     "cart": FieldValue.arrayUnion([cartModel.toMap()])
+  //   });
+  // }
 
   getcartToProduct(String id) async {
     final data =
@@ -100,3 +96,7 @@ class ProductPage extends StatelessWidget {
     });
   }
 }
+
+
+
+

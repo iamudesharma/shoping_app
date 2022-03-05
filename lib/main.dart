@@ -1,36 +1,23 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:shoping_app/controller/auth_controller.dart';
-import 'package:shoping_app/pages/home_page.dart';
-import 'package:shoping_app/pages/loading_page.dart';
-import 'package:shoping_app/pages/login_page.dart';
-import 'package:shoping_app/pages/no_internet_page.dart';
-import 'package:shoping_app/widgets/logger.dart';
+import 'package:shoping_app/controller/location_controller.dart';
+import 'package:shoping_app/controller/user_setup_controller.dart';
+import 'package:shoping_app/pages/user_setup.dart';
+
 import 'routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Color(0xFF125994),
   ));
   await Firebase.initializeApp();
-
-  Get.put(LoggerController(
-      logger: Logger(
-    printer: PrettyPrinter(
-        methodCount: 2,
-        errorMethodCount: 8,
-        lineLength: 120,
-        colors: true,
-        printEmojis: true,
-        printTime: false),
-  )));
-
+  Get.put(() => LocationController());
+  Get.put(UserSetController());
   Get.put(AuthController(
     firebaseAuth: FirebaseAuth.instance,
   ));
@@ -45,46 +32,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final controller = Get.find<AuthController>();
-  @override
-  void initState() {}
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      getPages: AppRoutes.pages,
-      // onGenerateRoute: () => AppRoutes.routes,
-      title: 'Flutter Demo',
+    return MaterialApp.router(
       theme: ThemeData(
-        colorSchemeSeed: Colors.blue,
         useMaterial3: true,
-
-        // ignore: deprecated_member_use
-
-        typography: Typography.material2018(),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        colorSchemeSeed: Colors.blue,
       ),
-      home: StreamBuilder<ConnectivityResult>(
-          stream: Connectivity().onConnectivityChanged,
-          builder: (context, snapshot) {
-            if (snapshot.data == ConnectivityResult.none) {
-              return const NoInternetPage();
-            }
-            return FutureBuilder<User?>(
-              future: FirebaseAuth.instance.authStateChanges().first,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const LoadingPage();
-                }
-                if (snapshot.data == null) {
-                  return const LoginPage();
-                }
-                return const HomePage();
-              },
-            );
-          }),
+      routeInformationParser: AppRoutes.route.routeInformationParser,
+      routerDelegate: AppRoutes.route.routerDelegate,
     );
   }
 }
