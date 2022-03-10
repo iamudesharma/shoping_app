@@ -12,7 +12,7 @@ abstract class UserModel with _$UserModel {
     required String name,
     required String email,
     required String phone,
-    required List<UserAddress> address,
+  
     required String image,
     required String createdAt,
   }) = _UserModel;

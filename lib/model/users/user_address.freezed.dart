@@ -14,21 +14,21 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-UserAddress _$UserAddressFromJson(Map<String, dynamic> json) {
-  return _UserAddress.fromJson(json);
+Address _$AddressFromJson(Map<String, dynamic> json) {
+  return _Address.fromJson(json);
 }
 
 /// @nodoc
-class _$UserAddressTearOff {
-  const _$UserAddressTearOff();
+class _$AddressTearOff {
+  const _$AddressTearOff();
 
-  _UserAddress call(
-      {@JsonKey(name: 'flat_no') required String flatNo,
+  _Address call(
+      {required String flatNo,
       required String state,
       required String city,
       required String zipcode,
       required Geo geo}) {
-    return _UserAddress(
+    return _Address(
       flatNo: flatNo,
       state: state,
       city: city,
@@ -37,52 +37,44 @@ class _$UserAddressTearOff {
     );
   }
 
-  UserAddress fromJson(Map<String, Object?> json) {
-    return UserAddress.fromJson(json);
+  Address fromJson(Map<String, Object?> json) {
+    return Address.fromJson(json);
   }
 }
 
 /// @nodoc
-const $UserAddress = _$UserAddressTearOff();
+const $Address = _$AddressTearOff();
 
 /// @nodoc
-mixin _$UserAddress {
-  @JsonKey(name: 'flat_no')
+mixin _$Address {
   String get flatNo => throw _privateConstructorUsedError;
   String get state => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
-  String get zipcode =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String get zipcode => throw _privateConstructorUsedError;
   Geo get geo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserAddressCopyWith<UserAddress> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AddressCopyWith<Address> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserAddressCopyWith<$Res> {
-  factory $UserAddressCopyWith(
-          UserAddress value, $Res Function(UserAddress) then) =
-      _$UserAddressCopyWithImpl<$Res>;
+abstract class $AddressCopyWith<$Res> {
+  factory $AddressCopyWith(Address value, $Res Function(Address) then) =
+      _$AddressCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'flat_no') String flatNo,
-      String state,
-      String city,
-      String zipcode,
-      Geo geo});
+      {String flatNo, String state, String city, String zipcode, Geo geo});
 
   $GeoCopyWith<$Res> get geo;
 }
 
 /// @nodoc
-class _$UserAddressCopyWithImpl<$Res> implements $UserAddressCopyWith<$Res> {
-  _$UserAddressCopyWithImpl(this._value, this._then);
+class _$AddressCopyWithImpl<$Res> implements $AddressCopyWith<$Res> {
+  _$AddressCopyWithImpl(this._value, this._then);
 
-  final UserAddress _value;
+  final Address _value;
   // ignore: unused_field
-  final $Res Function(UserAddress) _then;
+  final $Res Function(Address) _then;
 
   @override
   $Res call({
@@ -125,32 +117,25 @@ class _$UserAddressCopyWithImpl<$Res> implements $UserAddressCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$UserAddressCopyWith<$Res>
-    implements $UserAddressCopyWith<$Res> {
-  factory _$UserAddressCopyWith(
-          _UserAddress value, $Res Function(_UserAddress) then) =
-      __$UserAddressCopyWithImpl<$Res>;
+abstract class _$AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
+  factory _$AddressCopyWith(_Address value, $Res Function(_Address) then) =
+      __$AddressCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'flat_no') String flatNo,
-      String state,
-      String city,
-      String zipcode,
-      Geo geo});
+      {String flatNo, String state, String city, String zipcode, Geo geo});
 
   @override
   $GeoCopyWith<$Res> get geo;
 }
 
 /// @nodoc
-class __$UserAddressCopyWithImpl<$Res> extends _$UserAddressCopyWithImpl<$Res>
-    implements _$UserAddressCopyWith<$Res> {
-  __$UserAddressCopyWithImpl(
-      _UserAddress _value, $Res Function(_UserAddress) _then)
-      : super(_value, (v) => _then(v as _UserAddress));
+class __$AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
+    implements _$AddressCopyWith<$Res> {
+  __$AddressCopyWithImpl(_Address _value, $Res Function(_Address) _then)
+      : super(_value, (v) => _then(v as _Address));
 
   @override
-  _UserAddress get _value => super._value as _UserAddress;
+  _Address get _value => super._value as _Address;
 
   @override
   $Res call({
@@ -160,7 +145,7 @@ class __$UserAddressCopyWithImpl<$Res> extends _$UserAddressCopyWithImpl<$Res>
     Object? zipcode = freezed,
     Object? geo = freezed,
   }) {
-    return _then(_UserAddress(
+    return _then(_Address(
       flatNo: flatNo == freezed
           ? _value.flatNo
           : flatNo // ignore: cast_nullable_to_non_nullable
@@ -187,19 +172,18 @@ class __$UserAddressCopyWithImpl<$Res> extends _$UserAddressCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserAddress implements _UserAddress {
-  _$_UserAddress(
-      {@JsonKey(name: 'flat_no') required this.flatNo,
+class _$_Address implements _Address {
+  _$_Address(
+      {required this.flatNo,
       required this.state,
       required this.city,
       required this.zipcode,
       required this.geo});
 
-  factory _$_UserAddress.fromJson(Map<String, dynamic> json) =>
-      _$$_UserAddressFromJson(json);
+  factory _$_Address.fromJson(Map<String, dynamic> json) =>
+      _$$_AddressFromJson(json);
 
   @override
-  @JsonKey(name: 'flat_no')
   final String flatNo;
   @override
   final String state;
@@ -207,19 +191,19 @@ class _$_UserAddress implements _UserAddress {
   final String city;
   @override
   final String zipcode;
-  @override // ignore: invalid_annotation_target
+  @override
   final Geo geo;
 
   @override
   String toString() {
-    return 'UserAddress(flatNo: $flatNo, state: $state, city: $city, zipcode: $zipcode, geo: $geo)';
+    return 'Address(flatNo: $flatNo, state: $state, city: $city, zipcode: $zipcode, geo: $geo)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UserAddress &&
+            other is _Address &&
             const DeepCollectionEquality().equals(other.flatNo, flatNo) &&
             const DeepCollectionEquality().equals(other.state, state) &&
             const DeepCollectionEquality().equals(other.city, city) &&
@@ -238,28 +222,26 @@ class _$_UserAddress implements _UserAddress {
 
   @JsonKey(ignore: true)
   @override
-  _$UserAddressCopyWith<_UserAddress> get copyWith =>
-      __$UserAddressCopyWithImpl<_UserAddress>(this, _$identity);
+  _$AddressCopyWith<_Address> get copyWith =>
+      __$AddressCopyWithImpl<_Address>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserAddressToJson(this);
+    return _$$_AddressToJson(this);
   }
 }
 
-abstract class _UserAddress implements UserAddress {
-  factory _UserAddress(
-      {@JsonKey(name: 'flat_no') required String flatNo,
+abstract class _Address implements Address {
+  factory _Address(
+      {required String flatNo,
       required String state,
       required String city,
       required String zipcode,
-      required Geo geo}) = _$_UserAddress;
+      required Geo geo}) = _$_Address;
 
-  factory _UserAddress.fromJson(Map<String, dynamic> json) =
-      _$_UserAddress.fromJson;
+  factory _Address.fromJson(Map<String, dynamic> json) = _$_Address.fromJson;
 
   @override
-  @JsonKey(name: 'flat_no')
   String get flatNo;
   @override
   String get state;
@@ -267,10 +249,10 @@ abstract class _UserAddress implements UserAddress {
   String get city;
   @override
   String get zipcode;
-  @override // ignore: invalid_annotation_target
+  @override
   Geo get geo;
   @override
   @JsonKey(ignore: true)
-  _$UserAddressCopyWith<_UserAddress> get copyWith =>
+  _$AddressCopyWith<_Address> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -11,9 +11,6 @@ _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       name: json['name'] as String,
       email: json['email'] as String,
       phone: json['phone'] as String,
-      address: (json['address'] as List<dynamic>)
-          .map((e) => UserAddress.fromJson(e as Map<String, dynamic>))
-          .toList(),
       image: json['image'] as String,
       createdAt: json['createdAt'] as String,
     );
@@ -24,7 +21,6 @@ Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
       'name': instance.name,
       'email': instance.email,
       'phone': instance.phone,
-      'address': instance.address,
       'image': instance.image,
       'createdAt': instance.createdAt,
     };

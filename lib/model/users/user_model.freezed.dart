@@ -27,7 +27,6 @@ class _$UserModelTearOff {
       required String name,
       required String email,
       required String phone,
-      required List<UserAddress> address,
       required String image,
       required String createdAt}) {
     return _UserModel(
@@ -35,7 +34,6 @@ class _$UserModelTearOff {
       name: name,
       email: email,
       phone: phone,
-      address: address,
       image: image,
       createdAt: createdAt,
     );
@@ -56,7 +54,6 @@ mixin _$UserModel {
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-  List<UserAddress> get address => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
 
@@ -75,7 +72,6 @@ abstract class $UserModelCopyWith<$Res> {
       String name,
       String email,
       String phone,
-      List<UserAddress> address,
       String image,
       String createdAt});
 }
@@ -94,7 +90,6 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
     Object? name = freezed,
     Object? email = freezed,
     Object? phone = freezed,
-    Object? address = freezed,
     Object? image = freezed,
     Object? createdAt = freezed,
   }) {
@@ -115,10 +110,6 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as List<UserAddress>,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -142,7 +133,6 @@ abstract class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String name,
       String email,
       String phone,
-      List<UserAddress> address,
       String image,
       String createdAt});
 }
@@ -162,7 +152,6 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
     Object? name = freezed,
     Object? email = freezed,
     Object? phone = freezed,
-    Object? address = freezed,
     Object? image = freezed,
     Object? createdAt = freezed,
   }) {
@@ -183,10 +172,6 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as List<UserAddress>,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -207,7 +192,6 @@ class _$_UserModel implements _UserModel {
       required this.name,
       required this.email,
       required this.phone,
-      required this.address,
       required this.image,
       required this.createdAt});
 
@@ -223,15 +207,13 @@ class _$_UserModel implements _UserModel {
   @override
   final String phone;
   @override
-  final List<UserAddress> address;
-  @override
   final String image;
   @override
   final String createdAt;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, phone: $phone, address: $address, image: $image, createdAt: $createdAt)';
+    return 'UserModel(id: $id, name: $name, email: $email, phone: $phone, image: $image, createdAt: $createdAt)';
   }
 
   @override
@@ -243,7 +225,6 @@ class _$_UserModel implements _UserModel {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
-            const DeepCollectionEquality().equals(other.address, address) &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
@@ -255,7 +236,6 @@ class _$_UserModel implements _UserModel {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(phone),
-      const DeepCollectionEquality().hash(address),
       const DeepCollectionEquality().hash(image),
       const DeepCollectionEquality().hash(createdAt));
 
@@ -276,7 +256,6 @@ abstract class _UserModel implements UserModel {
       required String name,
       required String email,
       required String phone,
-      required List<UserAddress> address,
       required String image,
       required String createdAt}) = _$_UserModel;
 
@@ -291,8 +270,6 @@ abstract class _UserModel implements UserModel {
   String get email;
   @override
   String get phone;
-  @override
-  List<UserAddress> get address;
   @override
   String get image;
   @override

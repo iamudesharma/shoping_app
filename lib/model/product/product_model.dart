@@ -7,6 +7,8 @@ import 'package:shoping_app/model/product/product_item.dart';
 part 'product_model.freezed.dart';
 part 'product_model.g.dart';
 
+
+
 @freezed
 abstract class ProductModel with _$ProductModel {
    factory ProductModel({
