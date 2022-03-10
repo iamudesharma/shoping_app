@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:shoping_app/pages/account_page.dart';
 import 'package:shoping_app/pages/cart_page.dart';
 import 'package:shoping_app/pages/product_page.dart';
 import 'package:shoping_app/pages/search_page.dart';
 import 'package:shoping_app/pages/user_setup.dart';
+import 'package:shoping_app/routes/app_routes.gr.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,47 +14,51 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    _tabController = TabController(length: 4, vsync: this);
-
-    _tabController.addListener(() {
-      setState(() {});
-    });
-    super.initState();
-  }
-
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: TabBarView(
-        controller: _tabController,
-        children: const [
-          ProductPage(),
-          SearchPage(),
-          CartPage(),
-          AccountPage(),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: 'Cart'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
-        ],
-        currentIndex: _tabController.index,
-        onTap: (index) {
-          _tabController.index = index;
-        },
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.blue,
-      ),
+    return AutoTabsRouter(
+      routes: [
+        ProductRoute(),
+        SearchRoute(),
+        CartRoute(),
+        AccountRoute(),
+      ],
+      builder: (context, child, animation) {
+        final tabRouter = AutoTabsRouter.of(context);
+        return Scaffold(
+          body: FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: Colors.blue,
+            unselectedItemColor: Colors.grey,
+            currentIndex: tabRouter.activeIndex,
+            onTap: (index) {
+              tabRouter.setActiveIndex(index);
+            },
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                label: 'Search',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart),
+                label: 'Cart',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle),
+                label: 'Account',
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

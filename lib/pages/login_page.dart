@@ -11,6 +11,15 @@ class LoginPage extends GetView<AuthController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FlutterLogin(
+        additionalSignupFields: [
+          UserFormField(
+              displayName: 'username',
+              keyName: 'username',
+              userType: LoginUserType.name,
+              icon: Icon(
+                Icons.person,
+              )),
+        ],
         onSignup: (SignupData data) async {
           await controller.signUpWithEmailAndPassword(
               data.name!, data.password!);

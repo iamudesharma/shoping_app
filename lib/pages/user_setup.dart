@@ -1,15 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:shoping_app/controller/location_controller.dart';
 import 'package:shoping_app/controller/user_setup_controller.dart';
 import 'package:shoping_app/helpers/textformfield_helper.dart';
-import 'package:shoping_app/model/users/geo.dart';
 import 'package:shoping_app/model/users/user_model.dart';
-import 'package:shoping_app/routes/routes.dart';
-
-import '../model/users/user_address.dart';
 
 class UserSetUpPage extends StatefulWidget {
   const UserSetUpPage({Key? key}) : super(key: key);
@@ -121,8 +116,7 @@ class _UserSetUpPageState extends State<UserSetUpPage> {
 
                       var name =
                           firstNameController.text + ' ' + lastController.text;
-                      userSetController.userSetUp(
-                        FirebaseAuth.instance.currentUser!.uid,
+                      await userSetController.userSetUp(
                         UserModel(
                           image:
                               'https://firebasestorage.googleapis.com/v0/b/shoping-app-d8f0d.appspot.com/o/images%2Fuser.png?alt=media&token=f9f8f8f8-f8f8-4f8f-8f8f-f8f8f8f8f8f8',
@@ -132,22 +126,8 @@ class _UserSetUpPageState extends State<UserSetUpPage> {
                           id: FirebaseAuth.instance.currentUser!.uid,
                           createdAt:
                               DateTime.now().microsecondsSinceEpoch.toString(),
-                          address: [
-                            UserAddress(
-                              geo: Geo(
-                                lat: locationController.geo.value?.lat ?? 0.0,
-                                lng: locationController.geo.value?.lat ?? 0.0,
-                              ),
-                              city: cityController.text,
-                              flatNo: flatNoController.text,
-                              state: stateController.text,
-                              zipcode: pincodeController.text,
-                            )
-                          ],
                         ),
                       );
-
-                    context.go(Routes.HOME);
                     },
                     child: const Text('Save'),
                   ),

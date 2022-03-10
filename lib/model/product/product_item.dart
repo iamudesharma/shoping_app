@@ -4,6 +4,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'product_item.freezed.dart';
 part 'product_item.g.dart';
 
+
+
 @freezed
 abstract class ProductItem with _$ProductItem {
   factory ProductItem({
