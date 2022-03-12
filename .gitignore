@@ -49,6 +49,6 @@ node_modules
 lib/model/users/user_address.g.dart
 lib/model/users/user_model.g.dart
 lib/model/users/user_address.g.dart
-lib/model/users/user_address.freezed.dart
-
+lib/model/users/
+lib/model/product/
 

@@ -54,8 +54,10 @@ class AppRoutes extends _i10.RootStackRouter {
           routeData: routeData, child: const _i4.NoInternetPage());
     },
     AddressRoute.name: (routeData) {
+      final args = routeData.argsAs<AddressRouteArgs>();
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i5.AddressPage());
+          routeData: routeData,
+          child: _i5.AddressPage(key: args.key, controller: args.controller));
     },
     ProductRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
@@ -134,10 +136,26 @@ class NoInternetRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.AddressPage]
-class AddressRoute extends _i10.PageRouteInfo<void> {
-  const AddressRoute() : super(AddressRoute.name, path: '/address-page');
+class AddressRoute extends _i10.PageRouteInfo<AddressRouteArgs> {
+  AddressRoute({_i11.Key? key, required dynamic controller})
+      : super(AddressRoute.name,
+            path: '/address-page',
+            args: AddressRouteArgs(key: key, controller: controller));
 
   static const String name = 'AddressRoute';
+}
+
+class AddressRouteArgs {
+  const AddressRouteArgs({this.key, required this.controller});
+
+  final _i11.Key? key;
+
+  final dynamic controller;
+
+  @override
+  String toString() {
+    return 'AddressRouteArgs{key: $key, controller: $controller}';
+  }
 }
 
 /// generated route for

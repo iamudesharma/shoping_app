@@ -56,24 +56,9 @@ class UserController extends GetxController with UserRespository {
   }
 
   @override
-  Future<void> deleteAddress({required int index, required int id}) {
-    // TODO: implement deleteAddress
-    throw UnimplementedError();
-  }
-
-  @override
   Future<void> deleteUser(String uid) {
     // TODO: implement deleteUser
     throw UnimplementedError();
-  }
-
-  @override
-  Future<void> getAddress({required String uid}) async {
-    addressLoading.value = true;
-    final data = await userRef.doc(uid).get();
-    final userModel = UserModel.fromJson(data.data() as dynamic);
-    addressModel.value = userModel.address;
-    addressLoading.value = false;
   }
 
   @override
@@ -83,14 +68,10 @@ class UserController extends GetxController with UserRespository {
   }
 
   @override
-  Future<void> updateAddress({required int index, required Address address}) {
-    // TODO: implement updateAddress
-    throw UnimplementedError();
-  }
-
-  @override
   Future<void> updateUserData(UserModel user) {
     // TODO: implement updateUserData
     throw UnimplementedError();
   }
+
+
 }

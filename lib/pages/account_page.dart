@@ -1,6 +1,9 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shoping_app/controller/address_controller.dart';
+import 'package:shoping_app/repository/address_repository.dart';
 import 'package:shoping_app/routes/app_routes.gr.dart';
 
 class AccountPage extends StatelessWidget {
@@ -51,7 +54,9 @@ class AccountPage extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   print('onTap');
-                  AutoRouter.of(context).push(AddressRoute());
+                  AutoRouter.of(context).push(AddressRoute(
+                    controller: Get.put(AddressController()),
+                  ));
                 },
                 child: _orderTile(title: 'Your Addresses', onTap: () {}),
               ),

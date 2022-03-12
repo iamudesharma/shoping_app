@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shoping_app/controller/address_controller.dart';
 import 'package:shoping_app/controller/shared_preferences_controller.dart';
 import 'package:shoping_app/controller/user_setup_controller.dart';
 
 class AddressPage extends StatefulWidget {
-  const AddressPage({Key? key}) : super(key: key);
+  final controller;
+  const AddressPage({Key? key, required this.controller}) : super(key: key);
 
   @override
   State<AddressPage> createState() => _AddressPageState();
 }
 
 class _AddressPageState extends State<AddressPage> {
-  UserController controller = Get.find<UserController>();
+  AddressController controller = Get.find<AddressController>();
 
   @override
   void initState() {
-    controller.getAddress(uid: Get.find<SharedPerfController>().getUserId());
+    controller.getAddress(docId: Get.find<SharedPerfController>().getUserId());
     super.initState();
   }
 
