@@ -3,10 +3,17 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:shoping_app/controller/shared_preferences_controller.dart';
+import 'package:shoping_app/model/users/user_address.dart';
 import 'package:shoping_app/model/users/user_model.dart';
 
-class UserSetController extends GetxController {
+import '../repository/user_setup_repository.dart';
+
+class UserController extends GetxController with UserRespository {
   CollectionReference userRef = FirebaseFirestore.instance.collection('users');
+
+  Rxn<List<Address>> addressModel = Rxn<List<Address>>();
+  var addressLoading = false.obs;
 
   var userDataExist = false.obs;
   checkDataExist() async {
@@ -20,16 +27,70 @@ class UserSetController extends GetxController {
     }
   }
 
-  Future userSetUp( UserModel userModel) async {
-    print(json.encode(userModel.toJson()));
-    await userRef.doc(FirebaseAuth.instance.currentUser!.uid).set(userModel.toJson());
+  Future userSetUp(UserModel userModel) async {
+    print(
+      json.encode(
+        userModel.toJson(),
+      ),
+    );
+    await userRef
+        .doc(Get.find<SharedPerfController>().getUserId())
+        .set(userModel.toJson());
+
+    // print(userModel.toJson());
+  }
+
+  Future useraddressSetUp(Address address) async {
+    print(json.encode(address.toJson()));
+    await userRef
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('addresss')
+        .add(address.toJson());
 
     // print(userModel.toJson());
   }
 
   @override
   void onInit() {
-    checkDataExist();
     super.onInit();
+  }
+
+  @override
+  Future<void> deleteAddress({required int index, required int id}) {
+    // TODO: implement deleteAddress
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> deleteUser(String uid) {
+    // TODO: implement deleteUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> getAddress({required String uid}) async {
+    addressLoading.value = true;
+    final data = await userRef.doc(uid).get();
+    final userModel = UserModel.fromJson(data.data() as dynamic);
+    addressModel.value = userModel.address;
+    addressLoading.value = false;
+  }
+
+  @override
+  Future<UserModel> getUserdata(String uid) {
+    // TODO: implement getUserdata
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updateAddress({required int index, required Address address}) {
+    // TODO: implement updateAddress
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updateUserData(UserModel user) {
+    // TODO: implement updateUserData
+    throw UnimplementedError();
   }
 }

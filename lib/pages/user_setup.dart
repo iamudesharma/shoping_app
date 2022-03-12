@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:shoping_app/controller/location_controller.dart';
 import 'package:shoping_app/controller/user_setup_controller.dart';
 import 'package:shoping_app/helpers/textformfield_helper.dart';
+import 'package:shoping_app/model/users/geo.dart';
+import 'package:shoping_app/model/users/user_address.dart';
 import 'package:shoping_app/model/users/user_model.dart';
 
 class UserSetUpPage extends StatefulWidget {
@@ -14,13 +16,13 @@ class UserSetUpPage extends StatefulWidget {
 }
 
 class _UserSetUpPageState extends State<UserSetUpPage> {
-  late UserSetController userSetController;
+  late UserController userSetController;
 
   final locationController = Get.put(LocationController());
 
   @override
   void initState() {
-    userSetController = Get.put<UserSetController>(UserSetController());
+    userSetController = Get.put<UserController>(UserController());
     super.initState();
   }
 
@@ -124,8 +126,20 @@ class _UserSetUpPageState extends State<UserSetUpPage> {
                           email: FirebaseAuth.instance.currentUser!.email ?? '',
                           phone: phoneNumberController.text,
                           id: FirebaseAuth.instance.currentUser!.uid,
-                          createdAt:
-                              DateTime.now().microsecondsSinceEpoch.toString(),
+                          createdAt: DateTime.now(),
+                          address: [
+                            Address(
+                              firstname: firstNameController.text,
+                              lastname: lastController.text,
+                              flatNo: flatNoController.text,
+                              state: stateController.text,
+                              city: cityController.text,
+                              zipcode: pincodeController.text,
+                              geo: Geo(
+                                  lat: locationController.geo.value!.lat,
+                                  lng: locationController.geo.value!.lng),
+                            ),
+                          ],
                         ),
                       );
                     },

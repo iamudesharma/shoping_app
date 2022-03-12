@@ -4,12 +4,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:logging/logging.dart';
 import 'package:shoping_app/controller/auth_controller.dart';
 import 'package:shoping_app/controller/location_controller.dart';
 import 'package:shoping_app/controller/user_setup_controller.dart';
 import 'package:shoping_app/routes/routes.dart';
 
+import 'controller/shared_preferences_controller.dart';
 import 'routes/app_routes.gr.dart';
 
 void main() async {
@@ -17,9 +17,12 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Color(0xFF125994),
   ));
+
+  Get.put(SharedPerfController());
   await Firebase.initializeApp();
   Get.put(() => LocationController());
-  Get.put(UserSetController());
+  Get.put(UserController());
+
   Get.put(AuthController(
     firebaseAuth: FirebaseAuth.instance,
   ));
@@ -34,7 +37,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _routers = AppRoutes(authGuard: AuthGuard());
+  final _routers =
+      AppRoutes(authGuard: AuthGuard(), userSetupGuard: UserSetupGuard());
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

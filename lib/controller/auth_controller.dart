@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:logging/logging.dart';
+import 'package:shoping_app/controller/shared_preferences_controller.dart';
 import 'package:shoping_app/repository/auth_repository.dart';
 import 'package:shoping_app/widgets/toast.dart';
 
@@ -41,7 +42,11 @@ class AuthController extends GetxController with AuthRepository {
 
       Toasts.showToastSucces("Login Succes: ${user.email}");
       logger.info("Login Succes: ${user.email}");
+      Get.find<SharedPerfController>().savedUserId(user.uid);
+
       return user;
+
+      
     } catch (e) {
       Toasts.showToastError('SomeingWentWrong');
       logger.severe("User login error: ${e.toString()}");
@@ -97,3 +102,4 @@ class AuthController extends GetxController with AuthRepository {
     super.onInit();
   }
 }
+

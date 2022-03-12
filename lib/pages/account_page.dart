@@ -1,4 +1,7 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:shoping_app/routes/app_routes.gr.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -45,7 +48,13 @@ class AccountPage extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              _orderTile(title: 'Your Addresses'),
+              GestureDetector(
+                onTap: () {
+                  print('onTap');
+                  AutoRouter.of(context).push(AddressRoute());
+                },
+                child: _orderTile(title: 'Your Addresses', onTap: () {}),
+              ),
               const SizedBox(
                 height: 5,
               ),
@@ -89,12 +98,12 @@ class AccountPage extends StatelessWidget {
 
   Container _orderTile({required String title, void Function()? onTap}) {
     return Container(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10,
-        ),
-        child: GestureDetector(
-          onTap: () => onTap,
+      child: GestureDetector(
+        onTap: () => onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 10,
+          ),
           child: Row(
             children: [
               Text(title),
