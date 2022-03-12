@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:shoping_app/pages/account_page.dart';
+import 'package:shoping_app/pages/addresses/addresses.dart';
 import 'package:shoping_app/pages/cart_page.dart';
 import 'package:shoping_app/pages/home_page.dart';
 import 'package:shoping_app/pages/login_page.dart';
@@ -16,7 +17,7 @@ import 'package:shoping_app/routes/routes.dart';
     AutoRoute(
       page: HomePage,
       initial: true,
-      guards: [AuthGuard],
+      guards: [AuthGuard, UserSetupGuard],
       children: [
         AutoRoute(path: 'product', page: ProductPage),
         AutoRoute(path: 'search', page: SearchPage),
@@ -33,6 +34,9 @@ import 'package:shoping_app/routes/routes.dart';
     AutoRoute(
       page: NoInternetPage,
     ),
+    AutoRoute(
+      page: AddressPage,
+    )
   ],
 )
 class $AppRoutes {}

@@ -53,6 +53,7 @@
 // }
 
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:shoping_app/controller/auth_controller.dart';
 import 'package:shoping_app/routes/app_routes.gr.dart';
@@ -69,5 +70,29 @@ class AuthGuard extends AutoRouteGuard {
       // we redirect the user to our login page
       router.navigate(LoginRoute());
     }
+  }
+}
+
+class UserSetupGuard extends AutoRouteGuard {
+  @override
+  void onNavigation(NavigationResolver resolver, StackRouter router) async {
+    // the navigation is paused until resolver.next() is called with either
+    // true to resume/continue navigation or false to abort navigation
+
+    AuthController _controller = AuthController(
+      firebaseAuth: FirebaseAuth.instance,
+    );
+
+    _controller.firestore
+        .collection('users')
+        .doc(_controller.firebaseAuth.currentUser!.uid)
+        .get()
+        .then((value) {
+      if (value.exists) {
+        resolver.next(true);
+      } else {
+        router.navigate(UserSetUpRoute());
+      }
+    });
   }
 }
