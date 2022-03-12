@@ -3,9 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'geo.freezed.dart';
 part 'geo.g.dart';
 
-@JsonSerializable(
-  createToJson: true,
-)
+@JsonSerializable(explicitToJson: true)
 @freezed
 abstract class Geo with _$Geo {
   factory Geo({

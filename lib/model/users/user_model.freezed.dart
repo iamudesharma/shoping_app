@@ -28,7 +28,8 @@ class _$UserModelTearOff {
       required String email,
       required String phone,
       required String image,
-      required String createdAt}) {
+      @TimestampConverter() required DateTime createdAt,
+      required List<Address> address}) {
     return _UserModel(
       id: id,
       name: name,
@@ -36,6 +37,7 @@ class _$UserModelTearOff {
       phone: phone,
       image: image,
       createdAt: createdAt,
+      address: address,
     );
   }
 
@@ -55,7 +57,9 @@ mixin _$UserModel {
   String get email => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
+  @TimestampConverter()
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  List<Address> get address => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -73,7 +77,8 @@ abstract class $UserModelCopyWith<$Res> {
       String email,
       String phone,
       String image,
-      String createdAt});
+      @TimestampConverter() DateTime createdAt,
+      List<Address> address});
 }
 
 /// @nodoc
@@ -92,6 +97,7 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
     Object? phone = freezed,
     Object? image = freezed,
     Object? createdAt = freezed,
+    Object? address = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -117,7 +123,11 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as List<Address>,
     ));
   }
 }
@@ -134,7 +144,8 @@ abstract class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String email,
       String phone,
       String image,
-      String createdAt});
+      @TimestampConverter() DateTime createdAt,
+      List<Address> address});
 }
 
 /// @nodoc
@@ -154,6 +165,7 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
     Object? phone = freezed,
     Object? image = freezed,
     Object? createdAt = freezed,
+    Object? address = freezed,
   }) {
     return _then(_UserModel(
       id: id == freezed
@@ -179,7 +191,11 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as List<Address>,
     ));
   }
 }
@@ -193,7 +209,8 @@ class _$_UserModel implements _UserModel {
       required this.email,
       required this.phone,
       required this.image,
-      required this.createdAt});
+      @TimestampConverter() required this.createdAt,
+      required this.address});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
@@ -209,11 +226,14 @@ class _$_UserModel implements _UserModel {
   @override
   final String image;
   @override
-  final String createdAt;
+  @TimestampConverter()
+  final DateTime createdAt;
+  @override
+  final List<Address> address;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, phone: $phone, image: $image, createdAt: $createdAt)';
+    return 'UserModel(id: $id, name: $name, email: $email, phone: $phone, image: $image, createdAt: $createdAt, address: $address)';
   }
 
   @override
@@ -226,7 +246,8 @@ class _$_UserModel implements _UserModel {
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
             const DeepCollectionEquality().equals(other.image, image) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt));
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality().equals(other.address, address));
   }
 
   @override
@@ -237,7 +258,8 @@ class _$_UserModel implements _UserModel {
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(phone),
       const DeepCollectionEquality().hash(image),
-      const DeepCollectionEquality().hash(createdAt));
+      const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(address));
 
   @JsonKey(ignore: true)
   @override
@@ -257,7 +279,8 @@ abstract class _UserModel implements UserModel {
       required String email,
       required String phone,
       required String image,
-      required String createdAt}) = _$_UserModel;
+      @TimestampConverter() required DateTime createdAt,
+      required List<Address> address}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
@@ -273,7 +296,10 @@ abstract class _UserModel implements UserModel {
   @override
   String get image;
   @override
-  String get createdAt;
+  @TimestampConverter()
+  DateTime get createdAt;
+  @override
+  List<Address> get address;
   @override
   @JsonKey(ignore: true)
   _$UserModelCopyWith<_UserModel> get copyWith =>

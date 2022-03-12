@@ -23,17 +23,21 @@ class _$AddressTearOff {
   const _$AddressTearOff();
 
   _Address call(
-      {required String flatNo,
+      {@JsonKey(name: 'flat_no') required String flatNo,
       required String state,
       required String city,
-      required String zipcode,
-      required Geo geo}) {
+      @JsonKey(name: 'zip_code') required String zipcode,
+      required Geo geo,
+      @JsonKey(name: 'first_name') required String firstname,
+      @JsonKey(name: 'last_name') required String lastname}) {
     return _Address(
       flatNo: flatNo,
       state: state,
       city: city,
       zipcode: zipcode,
       geo: geo,
+      firstname: firstname,
+      lastname: lastname,
     );
   }
 
@@ -47,11 +51,17 @@ const $Address = _$AddressTearOff();
 
 /// @nodoc
 mixin _$Address {
+  @JsonKey(name: 'flat_no')
   String get flatNo => throw _privateConstructorUsedError;
   String get state => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
+  @JsonKey(name: 'zip_code')
   String get zipcode => throw _privateConstructorUsedError;
   Geo get geo => throw _privateConstructorUsedError;
+  @JsonKey(name: 'first_name')
+  String get firstname => throw _privateConstructorUsedError;
+  @JsonKey(name: 'last_name')
+  String get lastname => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,7 +73,13 @@ abstract class $AddressCopyWith<$Res> {
   factory $AddressCopyWith(Address value, $Res Function(Address) then) =
       _$AddressCopyWithImpl<$Res>;
   $Res call(
-      {String flatNo, String state, String city, String zipcode, Geo geo});
+      {@JsonKey(name: 'flat_no') String flatNo,
+      String state,
+      String city,
+      @JsonKey(name: 'zip_code') String zipcode,
+      Geo geo,
+      @JsonKey(name: 'first_name') String firstname,
+      @JsonKey(name: 'last_name') String lastname});
 
   $GeoCopyWith<$Res> get geo;
 }
@@ -83,6 +99,8 @@ class _$AddressCopyWithImpl<$Res> implements $AddressCopyWith<$Res> {
     Object? city = freezed,
     Object? zipcode = freezed,
     Object? geo = freezed,
+    Object? firstname = freezed,
+    Object? lastname = freezed,
   }) {
     return _then(_value.copyWith(
       flatNo: flatNo == freezed
@@ -105,6 +123,14 @@ class _$AddressCopyWithImpl<$Res> implements $AddressCopyWith<$Res> {
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
               as Geo,
+      firstname: firstname == freezed
+          ? _value.firstname
+          : firstname // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastname: lastname == freezed
+          ? _value.lastname
+          : lastname // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -122,7 +148,13 @@ abstract class _$AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
       __$AddressCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String flatNo, String state, String city, String zipcode, Geo geo});
+      {@JsonKey(name: 'flat_no') String flatNo,
+      String state,
+      String city,
+      @JsonKey(name: 'zip_code') String zipcode,
+      Geo geo,
+      @JsonKey(name: 'first_name') String firstname,
+      @JsonKey(name: 'last_name') String lastname});
 
   @override
   $GeoCopyWith<$Res> get geo;
@@ -144,6 +176,8 @@ class __$AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
     Object? city = freezed,
     Object? zipcode = freezed,
     Object? geo = freezed,
+    Object? firstname = freezed,
+    Object? lastname = freezed,
   }) {
     return _then(_Address(
       flatNo: flatNo == freezed
@@ -166,6 +200,14 @@ class __$AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
               as Geo,
+      firstname: firstname == freezed
+          ? _value.firstname
+          : firstname // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastname: lastname == freezed
+          ? _value.lastname
+          : lastname // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -174,29 +216,39 @@ class __$AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Address implements _Address {
   _$_Address(
-      {required this.flatNo,
+      {@JsonKey(name: 'flat_no') required this.flatNo,
       required this.state,
       required this.city,
-      required this.zipcode,
-      required this.geo});
+      @JsonKey(name: 'zip_code') required this.zipcode,
+      required this.geo,
+      @JsonKey(name: 'first_name') required this.firstname,
+      @JsonKey(name: 'last_name') required this.lastname});
 
   factory _$_Address.fromJson(Map<String, dynamic> json) =>
       _$$_AddressFromJson(json);
 
   @override
+  @JsonKey(name: 'flat_no')
   final String flatNo;
   @override
   final String state;
   @override
   final String city;
   @override
+  @JsonKey(name: 'zip_code')
   final String zipcode;
   @override
   final Geo geo;
+  @override
+  @JsonKey(name: 'first_name')
+  final String firstname;
+  @override
+  @JsonKey(name: 'last_name')
+  final String lastname;
 
   @override
   String toString() {
-    return 'Address(flatNo: $flatNo, state: $state, city: $city, zipcode: $zipcode, geo: $geo)';
+    return 'Address(flatNo: $flatNo, state: $state, city: $city, zipcode: $zipcode, geo: $geo, firstname: $firstname, lastname: $lastname)';
   }
 
   @override
@@ -208,7 +260,9 @@ class _$_Address implements _Address {
             const DeepCollectionEquality().equals(other.state, state) &&
             const DeepCollectionEquality().equals(other.city, city) &&
             const DeepCollectionEquality().equals(other.zipcode, zipcode) &&
-            const DeepCollectionEquality().equals(other.geo, geo));
+            const DeepCollectionEquality().equals(other.geo, geo) &&
+            const DeepCollectionEquality().equals(other.firstname, firstname) &&
+            const DeepCollectionEquality().equals(other.lastname, lastname));
   }
 
   @override
@@ -218,7 +272,9 @@ class _$_Address implements _Address {
       const DeepCollectionEquality().hash(state),
       const DeepCollectionEquality().hash(city),
       const DeepCollectionEquality().hash(zipcode),
-      const DeepCollectionEquality().hash(geo));
+      const DeepCollectionEquality().hash(geo),
+      const DeepCollectionEquality().hash(firstname),
+      const DeepCollectionEquality().hash(lastname));
 
   @JsonKey(ignore: true)
   @override
@@ -233,24 +289,34 @@ class _$_Address implements _Address {
 
 abstract class _Address implements Address {
   factory _Address(
-      {required String flatNo,
+      {@JsonKey(name: 'flat_no') required String flatNo,
       required String state,
       required String city,
-      required String zipcode,
-      required Geo geo}) = _$_Address;
+      @JsonKey(name: 'zip_code') required String zipcode,
+      required Geo geo,
+      @JsonKey(name: 'first_name') required String firstname,
+      @JsonKey(name: 'last_name') required String lastname}) = _$_Address;
 
   factory _Address.fromJson(Map<String, dynamic> json) = _$_Address.fromJson;
 
   @override
+  @JsonKey(name: 'flat_no')
   String get flatNo;
   @override
   String get state;
   @override
   String get city;
   @override
+  @JsonKey(name: 'zip_code')
   String get zipcode;
   @override
   Geo get geo;
+  @override
+  @JsonKey(name: 'first_name')
+  String get firstname;
+  @override
+  @JsonKey(name: 'last_name')
+  String get lastname;
   @override
   @JsonKey(ignore: true)
   _$AddressCopyWith<_Address> get copyWith =>
