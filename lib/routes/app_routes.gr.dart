@@ -61,7 +61,7 @@ class AppRoutes extends _i10.RootStackRouter {
     },
     ProductRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i6.ProductPage());
+          routeData: routeData, child:  _i6.ProductPage());
     },
     SearchRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
