@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:shoping_app/pages/account_page.dart';
 import 'package:shoping_app/pages/cart_page.dart';
-import 'package:shoping_app/pages/product_page.dart';
+import 'package:shoping_app/pages/products/product_page.dart';
 import 'package:shoping_app/pages/search_page.dart';
 import 'package:shoping_app/pages/user_setup.dart';
 import 'package:shoping_app/routes/app_routes.gr.dart';
@@ -20,7 +20,6 @@ class _HomePageState extends State<HomePage> {
     return AutoTabsRouter(
       routes: [
         ProductRoute(),
-        SearchRoute(),
         CartRoute(),
         AccountRoute(),
       ],
@@ -42,10 +41,6 @@ class _HomePageState extends State<HomePage> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Search',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_cart),

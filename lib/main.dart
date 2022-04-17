@@ -1,14 +1,17 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shoping_app/admin/admin_app.dart';
 import 'package:shoping_app/controller/auth_controller.dart';
 import 'package:shoping_app/controller/location_controller.dart';
 import 'package:shoping_app/controller/user_setup_controller.dart';
 import 'package:shoping_app/routes/routes.dart';
-
 import 'controller/shared_preferences_controller.dart';
 import 'routes/app_routes.gr.dart';
 
@@ -18,15 +21,27 @@ void main() async {
     statusBarColor: Color(0xFF125994),
   ));
 
+  kIsWeb
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+              apiKey: "AIzaSyBsgrP6RSX6Kh2YtyptR5DqWfR_W0G98HI",
+              authDomain: "shopingapp-3a842.firebaseapp.com",
+              projectId: "shopingapp-3a842",
+              storageBucket: "shopingapp-3a842.appspot.com",
+              messagingSenderId: "797494043235",
+              appId: "1:797494043235:web:2802154c2725a426d34e56",
+              measurementId: "G-16M48V4P9E"))
+      : "";
   Get.put(SharedPerfController());
-  await Firebase.initializeApp();
+  !kIsWeb ? await Firebase.initializeApp() : "";
   Get.put(() => LocationController());
   Get.put(UserController());
 
   Get.put(AuthController(
     firebaseAuth: FirebaseAuth.instance,
   ));
-  runApp(const MyApp());
+
+  runApp(kIsWeb ? MyAdminApp() : MyApp());
 }
 
 class MyApp extends StatefulWidget {

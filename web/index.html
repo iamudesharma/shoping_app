@@ -36,6 +36,38 @@
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
+
+
+       <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+       
+       <script>
+        // Import the functions you need from the SDKs you need
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+        // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBsgrP6RSX6Kh2YtyptR5DqWfR_W0G98HI",
+          authDomain: "shopingapp-3a842.firebaseapp.com",
+          projectId: "shopingapp-3a842",
+          storageBucket: "shopingapp-3a842.appspot.com",
+          messagingSenderId: "797494043235",
+          appId: "1:797494043235:web:2802154c2725a426d34e56",
+          measurementId: "G-16M48V4P9E"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
   <script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;

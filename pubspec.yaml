@@ -51,6 +51,10 @@ dependencies:
   location: ^4.3.0
   auto_route: 
   shared_preferences: ^2.0.13
+  firebase_storage: ^10.2.12
+  image_picker: ^0.8.5
+  velocity_x: ^3.4.0
+  uuid: ^3.0.6
 
   # firebase_analytics: ^9.1.1
 
